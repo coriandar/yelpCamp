@@ -12,10 +12,14 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Database connected'));
 
-/**setup ejs */
+/** setup ejs */
 const path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+/** setup ejs-mate */
+const ejsMate = require('ejs-mate');
+app.engine('ejs', ejsMate);
 
 /** setup Schemas */
 const Campground = require('./models/campground.js');
